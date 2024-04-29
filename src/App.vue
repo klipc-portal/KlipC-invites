@@ -16,9 +16,8 @@
           </div>
         </div>
         <div class="text">
-        <h3 >KlipC默默耕耘外汇跟单技术和服务已经五年有余,在T4/T5跨服务器领域已经做到了行业领先水平。通过不断提升的专业功能技术和细致完善的服务积攒了良好的线上口碑。</h3>
-          
-           </div>
+          <h3>KlipC默默耕耘外汇跟单技术和服务已经五年有余,在T4/T5跨服务器领域已经做到了行业领先水平。通过不断提升的专业功能技术和细致完善的服务积攒了良好的线上口碑。</h3>
+        </div>
       </div>
       <div class="content">
         <div class="flex">
@@ -28,7 +27,9 @@
             <h2>backdrop</h2>
           </div>
         </div>
-        <h3 class="text">越来越多KlipC用户积极提倡我们走进线下,举办线下技术交流活动,我们也在2023年底和2024年初迈出了成功的一小步。KlipC用户涵盖全球市场,汇聚行业交易明星大佬,他们掌握着前沿的市场讯息、稳定的交易技术、不同环节的圈内人脉。</h3>
+        <h3
+          class="text"
+        >越来越多KlipC用户积极提倡我们走进线下,举办线下技术交流活动,我们也在2023年底和2024年初迈出了成功的一小步。KlipC用户涵盖全球市场,汇聚行业交易明星大佬,他们掌握着前沿的市场讯息、稳定的交易技术、不同环节的圈内人脉。</h3>
       </div>
       <div class="content">
         <div class="flex">
@@ -84,6 +85,8 @@
   </div>
 </template>
 <script>
+import axios from "axios";
+import encrypt from "./utils/encrypt.js";
 export default {
   data() {
     return {
@@ -93,6 +96,8 @@ export default {
         email: "",
         city: ""
       },
+      baseURL: "https://master.klipc.com.cn", //测试环境
+      // baseURL:"https://my.klipc.com",//正式环境
       rules: {
         name: [{ required: true, message: "请输入姓名", trigger: "blur" }],
         phone: [{ required: true, message: "请输入电话", trigger: "blur" }],
@@ -116,21 +121,56 @@ export default {
             trigger: "blur"
           }
         ]
-      }
+      },
+      app_id: "53ae894c-dee7-468a-b79a-064957d0d131",
+      app_secret: "e803ba2aca76615ea0ebc1983732052d",
+      secret_tk: ""
     };
   },
+  created() {
+    this.getToken();
+  },
+
   methods: {
+    getToken() {
+      let _this = this;
+      axios
+        .post(this.baseURL + "/api/platform/auth", {
+          app_id: this.app_id,
+          app_secret: encrypt(this.app_secret)
+        })
+        .then(function(res) {
+          _this.secret_tk = res.data.data.token;
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
+    },
+    submitF() {
+      const data = {
+        name: this.form.name,
+        area_code: "+86",
+        phone: this.form.phone,
+        email: this.form.email,
+        city: this.form.city,
+        location: "CN"
+      };
+      const response = axios.post(this.baseURL + "/api/platform/enroll", data, {
+        headers: {
+          Token: this.secret_tk
+        }
+      });
+      console.log(response.data);
+      this.$message({
+        message: "报名成功！",
+        type: "success"
+      });
+    },
     submitForm(formName) {
       this.$refs[formName].validate(valid => {
-        console.log(valid);
         if (valid) {
-          console.log(122);
-          this.$message({
-            message: "报名成功！",
-            type: "success"
-          });
+          this.submitF();
         } else {
-    
           return false;
         }
       });
@@ -140,7 +180,8 @@ export default {
 </script>
 <style>
 h1,
-h2,h3,
+h2,
+h3,
 div,
 p,
 body {
@@ -194,9 +235,9 @@ body {
   left: -16px;
   top: 5px;
 }
-.text{
-    margin-top: 16px;
-  }
+.text {
+  margin-top: 16px;
+}
 .logoBox {
   margin-top: 16px;
   overflow: hidden;
