@@ -126,7 +126,8 @@ export default {
           }
         ]
       },
-      app_id: "53ae894c-dee7-468a-b79a-064957d0d131",
+      // app_id: "53ae894c-dee7-468a-b79a-064957d0d131",//master
+      app_id:"5b090c17-c221-4912-b850-d697b2ef89c4",
       app_secret: "e803ba2aca76615ea0ebc1983732052d",
       secret_tk: ""
     };
@@ -142,7 +143,7 @@ export default {
       axios
         .post(
           process.env.NODE_ENV === "development"
-            ? this.baseURL1+ "/api/platform/auth"
+            ? this.baseURL3+ "/api/platform/auth"
             : process.env.NODE_ENV === "test"
             ? this.baseURL2+ "/api/platform/auth"
             : this.baseURL3 + "/api/platform/auth",
@@ -180,7 +181,7 @@ export default {
         location: "CN"
       };
       const response = axios.post(     process.env.NODE_ENV === "development"
-            ? this.baseURL1+ "/api/platform/enroll"
+            ? this.baseURL3+ "/api/platform/enroll"
             : process.env.NODE_ENV === "test"
             ? this.baseURL2+ "/api/platform/enroll"
             : this.baseURL3 + "/api/platform/enroll",  data, {
