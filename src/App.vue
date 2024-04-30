@@ -133,24 +133,34 @@ export default {
   },
   created() {
     this.getToken();
-    // console.log(process.env.NODE_ENV);
   },
 
   methods: {
     getToken() {
       let _this = this;
+      // axios
+      //   .post(
+      //     process.env.NODE_ENV === "development"
+      //       ? this.baseURL1+ "/api/platform/auth"
+      //       : process.env.NODE_ENV === "test"
+      //       ? this.baseURL2+ "/api/platform/auth"
+      //       : this.baseURL3 + "/api/platform/auth",
+      //     {
+      //       app_id: this.app_id,
+      //       app_secret: encrypt(this.app_secret)
+      //     }
+      //   )
+      //   .then(function(res) {
+      //     _this.secret_tk = res.data.data.token;
+      //   })
+      //   .catch(function(error) {
+      //     console.log(error);
+      //   });
       axios
-        .post(
-          process.env.NODE_ENV === "development"
-            ? this.baseURL1+ "/api/platform/auth"
-            : process.env.NODE_ENV === "test"
-            ? this.baseURL2+ "/api/platform/auth"
-            : this.baseURL3 + "/api/platform/auth",
-          {
-            app_id: this.app_id,
-            app_secret: encrypt(this.app_secret)
-          }
-        )
+        .post(this.baseURL1 + "/api/platform/auth", {
+          app_id: this.app_id,
+          app_secret: encrypt(this.app_secret)
+        })
         .then(function(res) {
           _this.secret_tk = res.data.data.token;
         })
@@ -158,18 +168,6 @@ export default {
           console.log(error);
         });
     },
-    // getTokens() {
-    //   getToken({
-    //     app_id: this.app_id,
-    //     app_secret: encrypt(this.app_secret)
-    //   })
-    //     .then(res => {
-    //       console.log(res);
-    //     })
-    //     .catch(err => {
-    //       console.log(err);
-    //     });
-    // },
     submitF() {
       const data = {
         name: this.form.name,
@@ -179,15 +177,14 @@ export default {
         city: this.form.city,
         location: "CN"
       };
-      const response = axios.post(     process.env.NODE_ENV === "development"
-            ? this.baseURL1+ "/api/platform/enroll"
-            : process.env.NODE_ENV === "test"
-            ? this.baseURL2+ "/api/platform/enroll"
-            : this.baseURL3 + "/api/platform/enroll",  data, {
-        headers: {
-          Token: this.secret_tk
+      const response = axios.post( this.baseURL1 + "/api/platform/enroll",
+        data,
+        {
+          headers: {
+            Token: this.secret_tk
+          }
         }
-      });
+      );
       console.log(response.data);
       this.$message({
         message: "报名成功！",
