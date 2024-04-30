@@ -126,7 +126,8 @@ export default {
           }
         ]
       },
-      app_id: "53ae894c-dee7-468a-b79a-064957d0d131",
+      // app_id: "53ae894c-dee7-468a-b79a-064957d0d131",//master
+      app_id:"bf859622-d312-471f-a6e2-5a3b21094168",//dev
       app_secret: "e803ba2aca76615ea0ebc1983732052d",
       secret_tk: ""
     };
