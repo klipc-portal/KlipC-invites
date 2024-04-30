@@ -39,7 +39,9 @@
             <h2>INTRODUCTION</h2>
           </div>
         </div>
-        <h3 class="text">KlipC可以整合社区用户资源,构建一个更加友好的线上线下互动生态。在特定地区打造线上转线下的技术交流会,给市场带来更多讯息、技术、合作的可能性。希望各位行业用户积极参与,帮助我们选择下一场活动的地址和主题分享。</h3>
+        <h3
+          class="text"
+        >KlipC可以整合社区用户资源,构建一个更加友好的线上线下互动生态。在特定地区打造线上转线下的技术交流会,给市场带来更多讯息、技术、合作的可能性。希望各位行业用户积极参与,帮助我们选择下一场活动的地址和主题分享。</h3>
       </div>
       <div class="content">
         <h2>主办单位：</h2>
@@ -85,8 +87,9 @@
   </div>
 </template>
 <script>
-import axios from "axios";
+// import getToken from "./utils/api";
 import encrypt from "./utils/encrypt.js";
+import axios from "axios";
 export default {
   data() {
     return {
@@ -96,8 +99,9 @@ export default {
         email: "",
         city: ""
       },
-      baseURL: "https://master.klipc.com.cn", //测试环境
-      // baseURL:"https://my.klipc.com",//正式环境
+      baseURL1: "https://dev.klipc.com.cn",
+      baseURL2: "https://master.klipc.com.cn", //测试环境
+      baseURL3: "https://my.klipc.com", //正式环境
       rules: {
         name: [{ required: true, message: "请输入姓名", trigger: "blur" }],
         phone: [{ required: true, message: "请输入电话", trigger: "blur" }],
@@ -129,16 +133,24 @@ export default {
   },
   created() {
     this.getToken();
+    // console.log(process.env.NODE_ENV);
   },
 
   methods: {
     getToken() {
       let _this = this;
       axios
-        .post(this.baseURL + "/api/platform/auth", {
-          app_id: this.app_id,
-          app_secret: encrypt(this.app_secret)
-        })
+        .post(
+          process.env.NODE_ENV === "development"
+            ? this.baseURL1+ "/api/platform/auth"
+            : process.env.NODE_ENV === "test"
+            ? this.baseURL2+ "/api/platform/auth"
+            : this.baseURL3 + "/api/platform/auth",
+          {
+            app_id: this.app_id,
+            app_secret: encrypt(this.app_secret)
+          }
+        )
         .then(function(res) {
           _this.secret_tk = res.data.data.token;
         })
@@ -146,6 +158,18 @@ export default {
           console.log(error);
         });
     },
+    // getTokens() {
+    //   getToken({
+    //     app_id: this.app_id,
+    //     app_secret: encrypt(this.app_secret)
+    //   })
+    //     .then(res => {
+    //       console.log(res);
+    //     })
+    //     .catch(err => {
+    //       console.log(err);
+    //     });
+    // },
     submitF() {
       const data = {
         name: this.form.name,
@@ -155,7 +179,11 @@ export default {
         city: this.form.city,
         location: "CN"
       };
-      const response = axios.post(this.baseURL + "/api/platform/enroll", data, {
+      const response = axios.post(     process.env.NODE_ENV === "development"
+            ? this.baseURL1+ "/api/platform/enroll"
+            : process.env.NODE_ENV === "test"
+            ? this.baseURL2+ "/api/platform/enroll"
+            : this.baseURL3 + "/api/platform/enroll",  data, {
         headers: {
           Token: this.secret_tk
         }
