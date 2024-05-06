@@ -90,6 +90,7 @@
 // import getToken from "./utils/api";
 import encrypt from "./utils/encrypt.js";
 import axios from "axios";
+
 export default {
   data() {
     return {
@@ -127,14 +128,14 @@ export default {
         ]
       },
       // app_id: "53ae894c-dee7-468a-b79a-064957d0d131",//master
-      app_id:"5b090c17-c221-4912-b850-d697b2ef89c4",
+      app_id: "5b090c17-c221-4912-b850-d697b2ef89c4",
       app_secret: "e803ba2aca76615ea0ebc1983732052d",
       secret_tk: ""
     };
   },
   created() {
     this.getToken();
-    // console.log(process.env.NODE_ENV);
+
   },
 
   methods: {
@@ -143,9 +144,9 @@ export default {
       axios
         .post(
           process.env.NODE_ENV === "development"
-            ? this.baseURL3+ "/api/platform/auth"
+            ? this.baseURL3 + "/api/platform/auth"
             : process.env.NODE_ENV === "test"
-            ? this.baseURL2+ "/api/platform/auth"
+            ? this.baseURL2 + "/api/platform/auth"
             : this.baseURL3 + "/api/platform/auth",
           {
             app_id: this.app_id,
@@ -180,15 +181,19 @@ export default {
         city: this.form.city,
         location: "CN"
       };
-      const response = axios.post(     process.env.NODE_ENV === "development"
-            ? this.baseURL3+ "/api/platform/enroll"
-            : process.env.NODE_ENV === "test"
-            ? this.baseURL2+ "/api/platform/enroll"
-            : this.baseURL3 + "/api/platform/enroll",  data, {
-        headers: {
-          Token: this.secret_tk
+      const response = axios.post(
+        process.env.NODE_ENV === "development"
+          ? this.baseURL3 + "/api/platform/enroll"
+          : process.env.NODE_ENV === "test"
+          ? this.baseURL2 + "/api/platform/enroll"
+          : this.baseURL3 + "/api/platform/enroll",
+        data,
+        {
+          headers: {
+            Token: this.secret_tk
+          }
         }
-      });
+      );
       console.log(response.data);
       this.$message({
         message: "报名成功！",
@@ -203,10 +208,13 @@ export default {
           return false;
         }
       });
-    }
+    },
+
+    
   }
 };
 </script>
+
 <style>
 h1,
 h2,
@@ -216,10 +224,16 @@ p,
 body {
   margin: 0;
   padding: 0;
+  font-weight: 400;
+}
+h3 {
+  line-height: 26px;
 }
 body {
   background: #000;
   color: #fff;
+  font-family: "Source Han Sans", "Noto Sans CJK SC", "HanHei SC",
+    "Microsoft YaHei", sans-serif;
 }
 #app {
   position: relative;
@@ -244,7 +258,7 @@ body {
   background-image: url("./assets/earth.jpg");
   background-position: center;
   background-repeat: no-repeat;
-  background-size: cover;
+  /* background-size: cover; */
   position: absolute;
   top: 0px;
   z-index: -9;
@@ -362,7 +376,7 @@ body {
 }
 @media screen and (max-width: 750px) {
   .container {
-    width: 94%;
+    width: 92%;
     margin: 0 auto;
   }
   .logo {
@@ -375,21 +389,35 @@ body {
     font-size: 24px;
     margin-bottom: 0px;
   }
+  h1 {
+    font-size: 28px;
+    font-weight: 700;
+  }
+  h2 {
+    font-size: 16px;
+    font-weight: 400;
+  }
+  h3 {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 24px;
+  }
   .bg {
     width: 100%;
-    /* height: 700px; */
-    background-image: url("./assets/earth.jpg");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
+    background-image: url("./assets/earth2.jpg");
     position: absolute;
-    top: 0px;
-    z-index: -9;
+    background-size: 100% 30%;
+    top: -80px;
+    left: 0;
+    right: 0;
   }
 
   .line {
     position: absolute;
     left: -8px;
+    width: 6px;
+    height: 32px;
+    background: #bc1b29;
   }
 
   .logoBox {
@@ -432,7 +460,7 @@ body {
   .form-tips {
     margin-bottom: 30px;
     text-align: center;
-    font-size: 16px;
+    font-size: 12px;
   }
 
   /**表单内容 */
