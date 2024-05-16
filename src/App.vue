@@ -24,7 +24,7 @@
           <div class="line"></div>
           <div>
             <h2>背景：</h2>
-            <h2>backdrop</h2>
+            <h2>BACKDROP</h2>
           </div>
         </div>
         <h3
@@ -61,16 +61,23 @@
           class="demo-form"
         >
           <el-form-item label="姓名" prop="name">
-            <el-input v-model="form.name"></el-input>
+            <el-input v-model="form.name" placeholder="请输入姓名"></el-input>
           </el-form-item>
           <el-form-item label="手机" prop="phone">
-            <el-input v-model="form.phone"></el-input>
+            <el-input v-model="form.phone" placeholder="请输入手机号"></el-input>
           </el-form-item>
           <el-form-item label="邮箱" prop="email">
-            <el-input v-model="form.email"></el-input>
+            <el-input v-model="form.email" placeholder="请输入邮箱"></el-input>
           </el-form-item>
           <el-form-item label="所在城市" prop="city">
-            <el-input v-model="form.city"></el-input>
+            <!-- <el-input v-model="form.city"></el-input> -->
+            <el-cascader
+              size="large"
+              :options="options"
+              v-model="selectedOptions"
+              @change="handleChange"
+              placeholder="请选择所在城市"
+            ></el-cascader>
           </el-form-item>
           <el-form-item class="buttons">
             <el-button type="primary" @click="submitForm('form')">确认报名</el-button>
@@ -90,10 +97,14 @@
 // import getToken from "./utils/api";
 import encrypt from "./utils/encrypt.js";
 import axios from "axios";
+import { provinceAndCityData } from 'element-china-area-data'
 
 export default {
   data() {
     return {
+      options: provinceAndCityData,
+      selectedOptions: [],
+      selectedProvince: "",
       form: {
         name: "",
         phone: "",
@@ -135,7 +146,6 @@ export default {
   },
   created() {
     this.getToken();
-
   },
 
   methods: {
@@ -160,18 +170,19 @@ export default {
           console.log(error);
         });
     },
-    // getTokens() {
-    //   getToken({
-    //     app_id: this.app_id,
-    //     app_secret: encrypt(this.app_secret)
-    //   })
-    //     .then(res => {
-    //       console.log(res);
-    //     })
-    //     .catch(err => {
-    //       console.log(err);
-    //     });
-    // },
+    handleChange(selectValue) {
+      provinceAndCityData.forEach((item)=>{
+        if (item.value==selectValue[0]) {
+          item.children.forEach((item1)=>{
+            if (item1.value==selectValue[1]) {
+              // console.log(item.label,item1.label);
+              this.form.city=item.label+item1.label
+            }
+           
+          })
+        }
+      })
+    },
     submitF() {
       const data = {
         name: this.form.name,
@@ -208,9 +219,7 @@ export default {
           return false;
         }
       });
-    },
-
-    
+    }
   }
 };
 </script>
@@ -361,7 +370,8 @@ body {
   border-color: #bc1b29 !important;
   padding: 16px 40px !important;
 }
-.buttons .el-form-item__content {
+.el-cascader .el-input .el-input__inner{
+  width: 436px !important;
 }
 .code {
   width: 265px;
@@ -474,6 +484,7 @@ body {
   }
   .el-input__inner {
     height: 42px !important;
+    width: 220px !important;
   }
   .el-button--primary {
     background: #bc1b29 !important;
@@ -481,7 +492,10 @@ body {
     border-color: #bc1b29 !important;
     padding: 16px 40px !important;
   }
-
+  .el-cascader .el-input .el-input__inner{
+  /* width: 100% !important; */
+  width: 220px !important;
+}
   .code {
     width: 265px;
     height: 265px;
