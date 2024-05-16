@@ -97,7 +97,7 @@
 // import getToken from "./utils/api";
 import encrypt from "./utils/encrypt.js";
 import axios from "axios";
-import { provinceAndCityData } from 'element-china-area-data'
+import { provinceAndCityData } from "element-china-area-data";
 
 export default {
   data() {
@@ -171,17 +171,16 @@ export default {
         });
     },
     handleChange(selectValue) {
-      provinceAndCityData.forEach((item)=>{
-        if (item.value==selectValue[0]) {
-          item.children.forEach((item1)=>{
-            if (item1.value==selectValue[1]) {
+      provinceAndCityData.forEach(item => {
+        if (item.value == selectValue[0]) {
+          item.children.forEach(item1 => {
+            if (item1.value == selectValue[1]) {
               // console.log(item.label,item1.label);
-              this.form.city=item.label+item1.label
+              this.form.city = item.label + item1.label;
             }
-           
-          })
+          });
         }
-      })
+      });
     },
     submitF() {
       const data = {
@@ -192,24 +191,31 @@ export default {
         city: this.form.city,
         location: "CN"
       };
-      const response = axios.post(
-        process.env.NODE_ENV === "development"
-          ? this.baseURL3 + "/api/platform/enroll"
-          : process.env.NODE_ENV === "test"
-          ? this.baseURL2 + "/api/platform/enroll"
-          : this.baseURL3 + "/api/platform/enroll",
-        data,
-        {
-          headers: {
-            Token: this.secret_tk
+      axios
+        .post(
+          process.env.NODE_ENV === "development"
+            ? this.baseURL3 + "/api/platform/enroll"
+            : process.env.NODE_ENV === "test"
+            ? this.baseURL2 + "/api/platform/enroll"
+            : this.baseURL3 + "/api/platform/enroll",
+          data,
+          {
+            headers: {
+              Token: this.secret_tk
+            }
           }
-        }
-      );
-      console.log(response.data);
-      this.$message({
-        message: "报名成功！",
-        type: "success"
-      });
+        )
+        .then(res => {
+          // console.log(res.data);
+          if (res.data.status == 10200) {
+            this.$message({
+              message: "报名成功！",
+              type: "success"
+            });
+          }else{
+            this.$message.error(res.data.msg);
+          }
+        });
     },
     submitForm(formName) {
       this.$refs[formName].validate(valid => {
@@ -370,7 +376,7 @@ body {
   border-color: #bc1b29 !important;
   padding: 16px 40px !important;
 }
-.el-cascader .el-input .el-input__inner{
+.el-cascader .el-input .el-input__inner {
   width: 436px !important;
 }
 .code {
@@ -492,10 +498,10 @@ body {
     border-color: #bc1b29 !important;
     padding: 16px 40px !important;
   }
-  .el-cascader .el-input .el-input__inner{
-  /* width: 100% !important; */
-  width: 220px !important;
-}
+  .el-cascader .el-input .el-input__inner {
+    /* width: 100% !important; */
+    width: 220px !important;
+  }
   .code {
     width: 265px;
     height: 265px;
