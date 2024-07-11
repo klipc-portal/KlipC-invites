@@ -1,96 +1,235 @@
 <template>
   <div id="app">
     <div class="container">
-      <div class="logo">
-        <img src="./assets/logo.png" />
-      </div>
-      <div class="title">
-        <h1>KlipC线下技术交流会</h1>
-      </div>
-      <div class="content">
-        <div class="flex">
-          <div class="line"></div>
-          <div>
-            <h2>前言</h2>
-            <h2>INTRODUCTION</h2>
+      <div class="container1">
+        <div class="flex-sb">
+          <div class="logo">
+            <img src="./assets/logo.png" />
+          </div>
+          <div class="lang">
+            <!-- <img v-if="language=='zh'" @click="changeLanguage('en')" src="./assets/images/lang.png" />
+            <img v-else @click="changeLanguage('zh')" src="./assets/images/lang1.png" /> -->
           </div>
         </div>
-        <div class="text">
-          <h3>KlipC默默耕耘外汇跟单技术和服务已经五年有余,在T4/T5跨服务器领域已经做到了行业领先水平。通过不断提升的专业功能技术和细致完善的服务积攒了良好的线上口碑。</h3>
+        <!-- <p>{{ $t("message.hello") }}</p> -->
+        <div class="title">
+          <h1 class>KlipC交流会</h1>
         </div>
-      </div>
-      <div class="content">
-        <div class="flex">
-          <div class="line"></div>
-          <div>
-            <h2>背景：</h2>
-            <h2>BACKDROP</h2>
+        <div class="content">
+          <div class="box">
+            <img class="number-img1" src="./assets/images/01.png" />
+            <div class="section-title">关于klipc</div>
+            <img class="line-img" src="./assets/images/line.png" />
           </div>
+          <div
+            class="text"
+          >KlipC默默耕耘API跟单技术和服务已经五年有余，在T4/T5跨服务器领域已经做到了行业领先水平。通过不断提升的专业功能技术和细致完善的服务积攒了良好的线上口碑。</div>
+          <div
+            class="text"
+          >越来越多KlipC用户积极提倡我们走进线下，举办线下技术交流活动，我们也在2023年底和2024年初迈出了成功的一小步。KlipC用户涵盖全球市场，汇聚行业交易明星大佬，他们掌握着前沿的市场讯息、稳定的交易技术、不同环节的圈内人脉。</div>
         </div>
-        <h3
-          class="text"
-        >越来越多KlipC用户积极提倡我们走进线下,举办线下技术交流活动,我们也在2023年底和2024年初迈出了成功的一小步。KlipC用户涵盖全球市场,汇聚行业交易明星大佬,他们掌握着前沿的市场讯息、稳定的交易技术、不同环节的圈内人脉。</h3>
-      </div>
-      <div class="content">
-        <div class="flex">
-          <div class="line"></div>
-          <div>
-            <h2>愿景：</h2>
-            <h2>INTRODUCTION</h2>
+        <div class="content">
+          <div class="box">
+            <img class="number-img" src="./assets/images/02.png" />
+            <div class="section-title">活动介绍</div>
+            <img class="line-img" src="./assets/images/line.png" />
           </div>
-        </div>
-        <h3
-          class="text"
-        >KlipC可以整合社区用户资源,构建一个更加友好的线上线下互动生态。在特定地区打造线上转线下的技术交流会,给市场带来更多讯息、技术、合作的可能性。希望各位行业用户积极参与,帮助我们选择下一场活动的地址和主题分享。</h3>
-      </div>
-      <div class="content">
-        <h2>主办单位：</h2>
-        <div class="logoBox">
-          <!-- <img src="./assets/logo2x.png" /> -->
-        </div>
-      </div>
-      <div class="form">
-        <h1 class="form-title">KlipC线下技术交流会报名表</h1>
-        <div class="form-tips">活动全程免费，请正确填写联系方式和所在城市，便于发送 最新活动时间和地址</div>
-        <el-form
-          :model="form"
-          status-icon
-          :rules="rules"
-          ref="form"
-          label-width="100px"
-          class="demo-form"
-        >
-          <el-form-item label="姓名" prop="name">
-            <el-input v-model="form.name" placeholder="请输入姓名"></el-input>
-          </el-form-item>
-          <el-form-item label="手机" prop="phone">
-            <el-input v-model="form.phone" placeholder="请输入手机号"></el-input>
-          </el-form-item>
-          <el-form-item label="邮箱" prop="email">
-            <el-input v-model="form.email" placeholder="请输入邮箱"></el-input>
-          </el-form-item>
-          <el-form-item label="所在城市" prop="city">
-            <!-- <el-input v-model="form.city"></el-input> -->
-            <el-cascader
-              size="large"
-              :options="options"
-              v-model="selectedOptions"
-              @change="handleChange"
-              placeholder="请选择所在城市"
-            ></el-cascader>
-          </el-form-item>
-          <el-form-item class="buttons">
-            <el-button type="primary" @click="submitForm('form')">确认报名</el-button>
-          </el-form-item>
-        </el-form>
-      </div>
-      <div class="code">
-        <img src="./assets/code.jpg" />
-      </div>
-      <div class="bottom-text">KlipC 官网：https://klipc.me/</div>
-    </div>
+          <div class="text">本次交流会将以“什么什么主题”，于2024年10月10日周六下午在成都举行，具体时间地点详见报名短信.</div>
+          <div class="text flex">
+            <div class="flex">
+              <div>交流会地点:</div>
+              <div class="bold">成都</div>
+            </div>
+            <div class="flex">
+              <div class="flex">与会人群:</div>
+              <div class="bold">交易者</div>
+            </div>
+          </div>
+          <div class="section-title1">2024.8.20</div>
+          <div class="line"></div>
+          <div class="arrange flex">
+            <div class="time">13:30-13:50</div>
+            <img class="dots" src="./assets/images/dot.png" />
+            <div class="arrange-text">活动签到</div>
+          </div>
 
-    <div class="bg"></div>
+          <div class="arrange flex">
+            <div class="time">13:50-14:00</div>
+            <img class="dots" src="./assets/images/dot.png" />
+            <div class="arrange-text">主持人介绍主办方和分享嘉宾</div>
+          </div>
+          <div class="arrange flex">
+            <div class="time">14:00-14:30</div>
+            <img class="dots" src="./assets/images/dot.png" />
+            <div class="arrange-text">***主题分享</div>
+          </div>
+          <div class="arrange flex">
+            <div class="time">14:30-15:00</div>
+            <img class="dots" src="./assets/images/dot.png" />
+            <div class="arrange-text">***主题分享</div>
+          </div>
+          <div class="arrange flex">
+            <div class="time">15:00-15:30</div>
+            <img class="dots" src="./assets/images/dot.png" />
+            <div class="arrange-text">茶歇时间 &互动交流</div>
+          </div>
+          <div class="arrange flex">
+            <div class="time">15:30-15:50</div>
+            <img class="dots" src="./assets/images/dot.png" />
+            <div class="arrange-text">***主题分享</div>
+          </div>
+          <div class="arrange flex">
+            <div class="time">15:50-16:10</div>
+            <img class="dots" src="./assets/images/dot.png" />
+            <div class="arrange-text">***主题分享</div>
+          </div>
+          <div class="arrange flex">
+            <div class="time">16:10-17:00</div>
+            <img class="dots" src="./assets/images/dot.png" />
+            <div class="arrange-text">圆桌会议&互动交流</div>
+          </div>
+        </div>
+        <div class="content">
+          <div class="box">
+            <img class="number-img" src="./assets/images/03.png" />
+            <div class="section-title">嘉宾介绍</div>
+            <img class="line-img" src="./assets/images/line.png" />
+          </div>
+          <div class="guest">
+            <div class="guest-item">
+              <img class="outline-img" src="./assets/images/outline.png" />
+              <img class="profile-img" src="./assets/images/profile1.png" />
+
+              <div class="guest-name">姓名</div>
+              <div class="guest-dec">这是介绍这是介绍这是介绍</div>
+            </div>
+            <div class="guest-item">
+              <img class="outline-img" src="./assets/images/outline.png" />
+              <img class="profile-img" src="./assets/images/profile1.png" />
+
+              <div class="guest-name">姓名</div>
+              <div class="guest-dec">这是介绍这是介绍这是介绍</div>
+            </div>
+            <div class="guest-item">
+              <img class="outline-img" src="./assets/images/outline.png" />
+              <img class="profile-img" src="./assets/images/profile1.png" />
+
+              <div class="guest-name">姓名</div>
+              <div class="guest-dec">这是介绍这是介绍这是介绍</div>
+            </div>
+            <div class="guest-item">
+              <img class="outline-img" src="./assets/images/outline.png" />
+              <img class="profile-img" src="./assets/images/profile1.png" />
+
+              <div class="guest-name">姓名</div>
+              <div class="guest-dec">这是介绍这是介绍这是介绍</div>
+            </div>
+            <div class="guest-item">
+              <img class="outline-img" src="./assets/images/outline.png" />
+              <img class="profile-img" src="./assets/images/profile1.png" />
+
+              <div class="guest-name">姓名</div>
+              <div class="guest-dec">这是介绍这是介绍这是介绍</div>
+            </div>
+            <div class="guest-item">
+              <img class="outline-img" src="./assets/images/outline.png" />
+              <img class="profile-img" src="./assets/images/profile1.png" />
+
+              <div class="guest-name">姓名</div>
+              <div class="guest-dec">这是介绍这是介绍这是介绍</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="content">
+          <div class="box">
+            <img class="number-img" src="./assets/images/04.png" />
+            <div class="section-title">愿景</div>
+            <img class="line-img" src="./assets/images/line.png" />
+          </div>
+          <div
+            class="text"
+          >KlipC可以整合社区用户资源，构建一个更加友好的线上线下互动生态。在特定地区打造线上转线下的技术交流会，给市场带来更多讯息、技术、合作的可能性。期待各位行业用户积极参与，帮助我们选择下一场活动的地址和主题分享。</div>
+        </div>
+        <div class="content">
+          <div class="box">
+            <img class="number-img" src="./assets/images/05.png" />
+            <div class="section-title">主办单位</div>
+            <img class="line-img" src="./assets/images/line.png" />
+          </div>
+          <div class="logos">
+            <img src="./assets/logo.png" />
+          </div>
+        </div>
+        <div class="content">
+          <div class="box">
+            <img class="number-img" src="./assets/images/06.png" />
+            <div class="section-title">KlipC交流会报名表</div>
+            <img class="line-img" src="./assets/images/line.png" />
+          </div>
+          <div class="text">活动全程免费，请正确填写联系方式和所在城市，便于发送最新活动时间和地址</div>
+          <div class="form">
+            <el-form
+              :model="form"
+              status-icon
+              :rules="rules"
+              ref="form"
+              label-width="100px"
+              class="demo-form"
+            >
+              <el-form-item prop="name">
+                <el-input v-model="form.name" placeholder="姓名"></el-input>
+              </el-form-item>
+              <el-form-item prop="phone">
+                <el-input v-model="form.phone" placeholder="手机号"></el-input>
+              </el-form-item>
+              <el-form-item prop="email">
+                <el-input v-model="form.email" placeholder="邮箱"></el-input>
+              </el-form-item>
+              <el-form-item prop="city">
+                <el-input v-if="language=='en'" v-model="form.city" placeholder="所在城市"></el-input>
+                <!-- 中文选择  英文输入 -->
+                <el-cascader
+                  v-if="language=='zh'"
+                  size="large"
+                  :options="options"
+                  v-model="selectedOptions"
+                  @change="handleChange"
+                  placeholder="请选择所在城市"
+                ></el-cascader>
+              </el-form-item>
+              <!-- <div>
+                <el-checkbox v-model="checked"></el-checkbox>
+                <span class="checked-text">是否报名宣讲嘉宾</span>
+              </div>
+              <div class="checked-text1">需要同时提交个人信息情况介绍包括不限于公司名称、工作室名称 三方媒体名称和粉丝数，交易策略名字等）</div>
+
+              <el-form-item prop="news">
+                <el-input v-model="form.news" placeholder="填写信息" :disabled="!checked"></el-input>
+              </el-form-item>-->
+              <el-form-item class="buttons">
+                <el-button type="primary" @click="submitForm('form')">确认报名</el-button>
+              </el-form-item>
+            </el-form>
+          </div>
+        </div>
+        <div class="flex code-box">
+          <div>
+            <div class="code">
+              <img class="code-img" src="./assets/code.jpg" />
+              <div class="bottom-text">扫一扫关注公众号</div>
+            </div>
+          </div>
+          <div>
+            <div class="code">
+              <img class="code-img" src="./assets/images/code2.png" />
+              <div class="bottom-text">下载KlipC</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="bottom-text mt-50">KlipC 官网：https://klipc.me/</div>
+    </div>
   </div>
 </template>
 <script>
@@ -105,11 +244,14 @@ export default {
       options: provinceAndCityData,
       selectedOptions: [],
       selectedProvince: "",
+      checked: false,
+      language: "zh",
       form: {
         name: "",
         phone: "",
         email: "",
-        city: ""
+        city: "",
+        news: ""
       },
       baseURL1: "https://dev.klipc.com.cn",
       baseURL2: "https://master.klipc.com.cn", //测试环境
@@ -149,6 +291,11 @@ export default {
   },
 
   methods: {
+    // 切换语言
+    changeLanguage(lang) {
+      this.language = lang;
+      this.$i18n.locale = lang;
+    },
     getToken() {
       let _this = this;
       axios
@@ -212,7 +359,7 @@ export default {
               message: "报名成功！",
               type: "success"
             });
-          }else{
+          } else {
             this.$message.error(res.data.msg);
           }
         });
@@ -229,289 +376,5 @@ export default {
   }
 };
 </script>
-
 <style>
-h1,
-h2,
-h3,
-div,
-p,
-body {
-  margin: 0;
-  padding: 0;
-  font-weight: 400;
-}
-h3 {
-  line-height: 26px;
-}
-body {
-  background: #000;
-  color: #fff;
-  font-family: "Source Han Sans", "Noto Sans CJK SC", "HanHei SC",
-    "Microsoft YaHei", sans-serif;
-}
-#app {
-  position: relative;
-}
-.container {
-  width: 750px;
-  margin: 0 auto;
-}
-.logo {
-  padding: 50px 0;
-  text-align: left;
-}
-.title {
-  color: #fff;
-  text-align: center;
-  font-size: 36px;
-  margin-bottom: 200px;
-}
-.bg {
-  width: 100%;
-  height: 700px;
-  background-image: url("./assets/earth.jpg");
-  background-position: center;
-  background-repeat: no-repeat;
-  /* background-size: cover; */
-  position: absolute;
-  top: 0px;
-  z-index: -9;
-}
-.content {
-  margin-top: 60px;
-  position: relative;
-}
-.flex {
-  display: flex;
-}
-.line {
-  width: 6px;
-  height: 56px;
-  background: #bc1b29;
-  position: absolute;
-  left: -16px;
-  top: 5px;
-}
-.text {
-  margin-top: 16px;
-}
-.logoBox {
-  margin-top: 16px;
-  overflow: hidden;
-  background-image: url("./assets/logo2x.png");
-  /* background-position: center; */
-  background-repeat: no-repeat;
-  /* background-size: cover; */
-  width: 600px;
-  height: 200px;
-}
-.form {
-  width: 654px;
-  /* height: 744px; */
-  margin: 30px auto;
-  margin-top: 60px;
-  padding: 60px;
-  box-sizing: border-box;
-  --border-radius: 20px;
-  --border-width: 1px;
-  --border-color: conic-gradient(
-    from 135deg,
-    #9e0b0b,
-    rgba(255, 255, 255, 0),
-    #bc1b29,
-    rgba(255, 255, 255, 0),
-    #bc1b29
-  );
-
-  position: relative;
-  border-radius: var(--border-radius);
-  backdrop-filter: blur(10px);
-}
-.form::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  padding: var(--border-width);
-  border-radius: var(--border-radius);
-  background: var(--border-color);
-  z-index: -1;
-  --mask-bg: linear-gradient(red, red);
-  --mask-clip: content-box, padding-box;
-  -webkit-mask-image: var(--mask-bg), var(--mask-bg);
-  -webkit-mask-clip: var(--mask-clip);
-  mask-composite: exclude;
-  -webkit-mask-composite: destination-out;
-}
-.form-title {
-  text-align: center;
-  margin-bottom: 30px;
-}
-.form-tips {
-  margin-bottom: 30px;
-  text-align: center;
-  font-size: 20px;
-}
-.item .el-form-item__label {
-  color: #ffffff;
-}
-/**表单内容 */
-.el-form-item {
-  margin-bottom: 40px !important;
-}
-.el-form-item__label {
-  color: #fff !important;
-  text-align: left !important;
-  font-size: 16px !important;
-}
-.el-input__inner {
-  height: 42px !important;
-}
-.el-button--primary {
-  background: #bc1b29 !important;
-  font-size: 20px !important;
-  border-color: #bc1b29 !important;
-  padding: 16px 40px !important;
-}
-.el-cascader .el-input .el-input__inner {
-  width: 436px !important;
-}
-.code {
-  width: 265px;
-  height: 265px;
-  margin: 0 auto;
-  padding: 50px 0 20px 0;
-}
-.bottom-text {
-  font-size: 20px;
-  text-align: center;
-  margin-bottom: 160px;
-}
-@media screen and (max-width: 750px) {
-  .container {
-    width: 92%;
-    margin: 0 auto;
-  }
-  .logo {
-    padding: 50px 0;
-    text-align: left;
-  }
-  .title {
-    color: #fff;
-    text-align: center;
-    font-size: 24px;
-    margin-bottom: 0px;
-  }
-  h1 {
-    font-size: 28px;
-    font-weight: 700;
-  }
-  h2 {
-    font-size: 16px;
-    font-weight: 400;
-  }
-  h3 {
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 24px;
-  }
-  .bg {
-    width: 100%;
-    background-image: url("./assets/earth2.jpg");
-    position: absolute;
-    background-size: 100% 30%;
-    top: -80px;
-    left: 0;
-    right: 0;
-  }
-
-  .line {
-    position: absolute;
-    left: -8px;
-    width: 6px;
-    height: 32px;
-    background: #bc1b29;
-  }
-
-  .logoBox {
-    margin-top: 16px;
-    width: 240px;
-    overflow: hidden;
-    height: 78px;
-    background-image: url("./assets/logo.png");
-    background-repeat: no-repeat;
-  }
-  .form {
-    width: 100%;
-    height: 600px;
-    margin: 30px auto;
-    margin-top: 60px;
-
-    padding: 24px;
-    padding-top: 40px;
-    box-sizing: border-box;
-    --border-radius: 20px;
-    --border-width: 1px;
-    --border-color: conic-gradient(
-      from 135deg,
-      #9e0b0b,
-      rgba(255, 255, 255, 0),
-      #bc1b29,
-      rgba(255, 255, 255, 0),
-      #bc1b29
-    );
-
-    position: relative;
-    border-radius: var(--border-radius);
-    backdrop-filter: blur(10px);
-  }
-  .form-title {
-    text-align: center;
-    margin-bottom: 30px;
-    font-size: 24px;
-  }
-  .form-tips {
-    margin-bottom: 30px;
-    text-align: center;
-    font-size: 12px;
-  }
-
-  /**表单内容 */
-  .el-form-item {
-    margin-bottom: 30px !important;
-  }
-  .el-form-item__label {
-    color: #fff !important;
-    text-align: left !important;
-    font-size: 16px !important;
-  }
-  .el-input__inner {
-    height: 42px !important;
-    width: 220px !important;
-  }
-  .el-button--primary {
-    background: #bc1b29 !important;
-    font-size: 20px !important;
-    border-color: #bc1b29 !important;
-    padding: 16px 40px !important;
-  }
-  .el-cascader .el-input .el-input__inner {
-    /* width: 100% !important; */
-    width: 220px !important;
-  }
-  .code {
-    width: 265px;
-    height: 265px;
-    margin: 0 auto;
-    padding: 50px 0 20px 0;
-  }
-  .bottom-text {
-    font-size: 20px;
-    text-align: center;
-    margin-bottom: 100px;
-  }
-}
 </style>
