@@ -26,9 +26,9 @@
           >KlipC 成立于2019年，总部位于美国<span class="color-bc">西雅图 </span>，技术开发是由<span class="color-bc">15年+</span> 行业金融技术经验的瑞典团队负责，管理团队都是已经积累了<span class="color-bc">15年+</span> 行业领域的成员组成。全球超过<span class="color-bc">100,000用户</span>选择KlipC，其在T4/T5的API跨服务器领域处于<span class="color-bc">行业领先地位</span>。通过不断<span class="color-bc">提升技术专业性、优化交易功能、改善用户体验和保障线上一对一用户服务</span>，我们在线上积累了非常好的<span class="color-bc">口碑</span>。KlipC致力于整合行业用户资源，打造更加友好的线上线下互动生态。</div>
           <div
             class="text"
-          >Now 我们计划在各个城市举办线下技术交流会，向全球<span class="color-bc">交易员、投资者、信号、跟单者、技术团队和交易商等所有行业人士发出诚挚的邀请！</span>期待您的积极参与，促进行业发展，为市场带来更多讯息、技术和合作的机会！</div>
+          ><span class="color-bc">Now</span> 我们计划在各个城市举办线下技术交流会，向全球<span class="color-bc">交易员、投资者、信号、跟单者、技术团队和交易商等所有行业人士发出诚挚的邀请！</span>期待您的积极参与，促进行业发展，为市场带来更多讯息、技术和合作的机会！</div>
         </div>
-        <div class="form">
+        <div class="form form1">
             <div class="form-title">KlipC交流会观众报名表</div>
          
           <div class="form-text">具体时间和地址将以短信方式发送给大家，我们欢迎所有城市的用户都报名，下一场可能就来到您的城市哦</div>
@@ -41,16 +41,16 @@
               label-width="100px"
               class="demo-form"
             >
-              <el-form-item prop="name">
-                <el-input v-model="form.name" placeholder="姓名"></el-input>
+              <el-form-item prop="name"  style="--size:2em">
+                <el-input v-model="form.name" placeholder="姓名*"></el-input>
               </el-form-item>
-              <el-form-item prop="phone">
-                <el-input v-model="form.phone" placeholder="手机号"></el-input>
+              <el-form-item prop="phone"  style="--size:3em">
+                <el-input v-model="form.phone" placeholder="手机号 *"></el-input>
               </el-form-item>
-              <el-form-item prop="email">
-                <el-input v-model="form.email" placeholder="邮箱"></el-input>
+              <el-form-item prop="email"  style="--size:2em">
+                <el-input v-model="form.email" placeholder="邮箱 *"></el-input>
               </el-form-item>
-              <el-form-item prop="city">
+              <el-form-item prop="city"  style="--size:4em">
                 <el-input v-if="language=='en'" v-model="form.city" placeholder="所在城市"></el-input>
                 <el-cascader
                   v-if="language=='zh'"
@@ -58,7 +58,7 @@
                   :options="options"
                   v-model="selectedOptions"
                   @change="handleChange"
-                  placeholder="请选择所在城市"
+                  placeholder="所在城市 *"
                 ></el-cascader>
               </el-form-item>
              
@@ -82,18 +82,18 @@
           <div>
             <div class="code">
               <img class="code-img" src="@/assets/code.jpg" />
-              <div class="bottom-text">扫一扫关注公众号</div>
+              <div class="bottom-text">关注KlipC公众号 <br/>了解更多资讯</div>
             </div>
           </div>
           <div>
             <div class="code">
               <img class="code-img" src="@/assets/images/code2.png" />
-              <div class="bottom-text">下载KlipC</div>
+              <div class="bottom-text">安卓-扫码下载APP <br/>苹果-APP Store即可下载</div>
             </div>
           </div>
         </div>
       </div>
-      <div class="bottom-text mt-50">KlipC 官网：https://klipc.me/</div>
+      <div class="bottom-text mt-50">https://klipc.me/</div>
       <div >
       <img class="bgimg" src="../assets/images/bg.png" />
        
