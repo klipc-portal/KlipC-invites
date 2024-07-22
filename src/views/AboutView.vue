@@ -59,7 +59,13 @@
                 <el-input v-model="form.name" placeholder="姓名 *"></el-input>
               </el-form-item>
               <el-form-item prop="phone" style="--size:3em">
-                <el-input v-model="form.phone" placeholder="手机号 *"></el-input>
+                <el-input v-model="form.phone" maxlength="11" placeholder="手机号 *"></el-input>
+                <div v-if="codeShow" class="codeShowss">
+                  <div class="codeShowtips">
+                    <img class="nocodeimg" src="../assets/images/code.png" />
+                    {{codetips}}
+                  </div>
+                </div>
               </el-form-item>
               <el-form-item class="code_line" prop="code" style="--size:3em">
                 <el-input v-model="form.code" placeholder="验证码 *"></el-input>
@@ -88,8 +94,7 @@
 
               <el-form-item class="guest-buttons">
                 <!-- <el-button :disabled="disabledBtn" type="primary" @click="submitForm('form')">确认报名</el-button> -->
-                <el-button  type="primary" @click="submitForm('form')">确认报名</el-button>
-                
+                <el-button type="primary" @click="submitForm('form')">确认报名</el-button>
               </el-form-item>
               <div class="text2">具体交流会选择城市和时间将由社区客服一对一告知邀请，我们诚挚的邀请每一位热衷于交易的您~</div>
             </el-form>
@@ -134,6 +139,12 @@
       </div>
       <div class="bottom-text mt-80">www.klipc.me</div>
       <img class="bgimg1" src="../assets/images/bg1.png" />
+      <SuccessDialog
+        v-if="application"
+        :parentPhone="form.phone"
+        :parentType="parenttype"
+        :parentMsg="msg"
+      ></SuccessDialog>
     </div>
   </div>
 </template>
@@ -141,6 +152,7 @@
 import encrypt from "@/utils/encrypt.js";
 import axios from "axios";
 import { provinceAndCityData } from "element-china-area-data";
+import SuccessDialog from "../components/SuccessDialog.vue";
 
 export default {
   data() {
@@ -152,6 +164,11 @@ export default {
       language: "zh",
       countdown: 0, // 倒计时的秒数
       intervalId: null, // 存储定时器ID
+      codetips: "", //手机验证提示窗内容
+      codeShow: false,
+      application: false,
+      msg: "您已经报过名了，请勿重复提交",
+      parenttype: 0, //成功传1  失败2
       disabledBtn: true,
       form: {
         name: "",
@@ -196,15 +213,17 @@ export default {
       // app_id: "53ae894c-dee7-468a-b79a-064957d0d131",//master
       // app_id: "bf859622-d312-471f-a6e2-5a3b21094168", //dev
       // app_secret: "e803ba2aca76615ea0ebc1983732052d", //dev
-      app_id: "5b090c17-c221-4912-b850-d697b2ef89c4",//产品
-      app_secret: "e803ba2aca76615ea0ebc1983732052d",//产品
+      app_id: "5b090c17-c221-4912-b850-d697b2ef89c4", //产品
+      app_secret: "e803ba2aca76615ea0ebc1983732052d", //产品
       secret_tk: ""
     };
   },
   created() {
     this.getToken();
   },
-
+  components: {
+    SuccessDialog
+  },
   methods: {
     // 切换语言
     changeLanguage(lang) {
@@ -274,26 +293,30 @@ export default {
         .then(res => {
           // console.log(res.data);
           if (res.data.status == 10200) {
-            this.$message({
-              message: "报名成功！",
-              type: "success",
-              duration: 1500,
-              customClass: "messageCenter"
-            });
+            this.application = true;
+            this.parenttype = 0;
+            setTimeout(() => {
+              this.application = false;
+            }, 3000);
+          } else if (res.data.status == 10400) {
+            this.msg = res.data.msg;
+            this.application = true;
+            this.parenttype = 1;
+            setTimeout(() => {
+              this.application = false;
+            }, 2000);
           } else {
-            this.$message({
-              type: "error",
-              message: res.data.msg,
-              duration: 1500,
-              customClass: "messageCenter"
-            });
+            this.codeShow = true;
+            this.codetips = res.data.msg;
+            setTimeout(() => {
+              this.codeShow = false;
+            }, 2000);
           }
         });
     },
     submitForm(formName) {
       this.$refs[formName].validate(valid => {
         if (valid) {
-          
           this.submitF();
         } else {
           return false;
@@ -336,12 +359,11 @@ export default {
                   }
                 }, 1000);
               } else {
-                this.$message({
-                  type: "error",
-                  message: res.data.msg,
-                  duration: 1500,
-                  customClass: "messageCenter"
-                });
+                this.codeShow = true;
+                this.codetips = res.data.msg;
+                setTimeout(() => {
+                  this.codeShow = false;
+                }, 2000);
               }
             });
         }

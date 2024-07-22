@@ -289,6 +289,7 @@ body {
     font-size: 20px;
     padding: 0px 40px !important;
 }
+
 /* 
 .el-input__inner::placeholder {
     color: #575757 !important;
@@ -353,6 +354,7 @@ body {
     color: #BC1B29;
     margin-top: 20px;
 }
+
 .buttons .el-button--primary:active {
     background-color: #BC1B29;
     color: #FFF;
@@ -387,9 +389,11 @@ body {
 .mt-80 {
     margin-top: 80px;
 }
-.form1 .el-form-item__error{
+
+.form1 .el-form-item__error {
     color: #FFF !important;
 }
+
 .el-input__inner::-webkit-input-placeholder {
     font-style: 1em;
     background: linear-gradient(to right, #575757 0, #575757 var(--size), red var(--size));
@@ -397,6 +401,7 @@ body {
     -webkit-background-clip: text;
     color: transparent;
 }
+
 .el-input__inner:-ms-input-placeholder {
     font-style: 1em;
     background: linear-gradient(to right, #575757 0, #575757 var(--size), red var(--size));
@@ -404,6 +409,7 @@ body {
     -webkit-background-clip: text;
     color: transparent;
 }
+
 .el-input__inner::placeholder {
     font-style: 1em;
     background: linear-gradient(to right, #575757 0, #575757 var(--size), red var(--size));
@@ -411,19 +417,23 @@ body {
     -webkit-background-clip: text;
     color: transparent;
 }
-.code_line{
+
+.code_line {
     display: flex;
 
 }
-.code_line .el-form-item__content{
+
+.code_line .el-form-item__content {
     display: flex;
     width: 100%;
     position: relative;
 }
-.code_line .el-input{
+
+.code_line .el-input {
     width: 70% !important;
 }
-.code_line  .el-button{
+
+.code_line .el-button {
     position: absolute;
     right: 0;
     color: #BC1B29;
@@ -432,14 +442,48 @@ body {
     width: 25%;
     height: 60px;
 }
+
+/* 手机号提示弹窗 */
+.codeShows {
+    position: relative;
+}
+
+.codeShowss {
+    position: absolute;
+    z-index: 12;
+    top: 24px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    color: #FFF;
+
+}
+.nocodeimg{
+    width: 30px;
+    height: 30px;
+    position: relative;
+    top: 8px;
+}
+
+.codeShowtips {
+    background: rgba(0, 0, 0, 0.8);
+    border-radius: 12px 12px 12px 12px;
+    padding: 16px 40px;
+    font-size: 20px;
+    margin: 0 auto;
+
+}
+
 /* 嘉宾表单独样式 */
-.guest-body .code_line  .el-button{
+.guest-body .code_line .el-button {
     background-color: #BC1B29;
     color: #FFF;
 }
-.guest-body{
+
+.guest-body {
     position: relative;
 }
+
 .bgimg1 {
     width: 750px;
     position: absolute;
@@ -611,7 +655,8 @@ body {
     font-style: normal;
     text-transform: none;
 }
-.text3{
+
+.text3 {
     font-weight: 400;
     font-size: 20px;
     color: #BC1B29;
@@ -631,20 +676,24 @@ body {
 }
 
 @media screen and (max-width: 750px) {
+
     /* 改变messageCenter */
-    .messageCenter{
+    .messageCenter {
         top: 300px !important;
     }
-    .code_line  .el-button{
+
+    .code_line .el-button {
         font-size: 12px;
         height: 40px;
         padding: 0;
     }
+
     .el-form-item__error {
         padding-top: 1px !important;
         font-size: 8px;
     }
-    .form1 .el-form-item__error{
+
+    .form1 .el-form-item__error {
         color: #FFF !important;
         font-size: 10px;
 
@@ -1004,7 +1053,8 @@ body {
         font-style: normal;
         text-transform: none;
     }
-    .text3{
+
+    .text3 {
         font-weight: 400;
         font-size: 12px;
         color: #BC1B29;
@@ -1020,20 +1070,43 @@ body {
     .mt-80 {
         margin-top: 30px;
     }
+    /* 手机号提示弹窗 */
+
+
+.codeShowss {
+    top: 12px;
+    justify-content: center;
 }
+.nocodeimg{
+    width: 20px;
+    height: 20px;
+    top: 5px;
+}
+
+.codeShowtips {
+    background: rgba(0, 0, 0, 0.8);
+    border-radius: 12px;
+    padding: 8px 16px;
+    font-size: 12px;
+    margin: 0 auto;
+}
+}
+
 @media screen and (max-width: 415px) {
     .form {
         height: 450px;
         margin: 0 auto;
         margin-top: 20px;
     }
+
     .buttons .el-button--primary {
         font-size: 18px !important;
         height: 42px;
         margin-top: 4px;
     }
-   
+
 }
+
 @media screen and (max-width: 391px) {
     .form {
         height: 420px;
@@ -1099,28 +1172,35 @@ body {
     .form {
         height: 380px;
     }
-    .form-text{
+
+    .form-text {
         font-size: 11px;
         width: 100%;
     }
-    .el-input__inner{
+
+    .el-input__inner {
         height: 32px !important;
     }
-    .code_line  .el-button{
+
+    .code_line .el-button {
         font-size: 12px;
         height: 30px;
         margin-top: 6px;
     }
-    .buttons .el-button--primary{
+
+    .buttons .el-button--primary {
         height: 36px;
         margin-top: 10px;
     }
-    .el-form-item{
+
+    .el-form-item {
         margin-top: -5px;
     }
-    .guest-title2{
+
+    .guest-title2 {
         font-size: 32px;
     }
+
     .bgimg {
         width: 550px;
         position: absolute;
