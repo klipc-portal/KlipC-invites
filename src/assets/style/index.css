@@ -353,6 +353,10 @@ body {
     color: #BC1B29;
     margin-top: 20px;
 }
+.buttons .el-button--primary:active {
+    background-color: #BC1B29;
+    color: #FFF;
+}
 
 .code {
     width: 265px;
@@ -407,8 +411,32 @@ body {
     -webkit-background-clip: text;
     color: transparent;
 }
-/* 嘉宾表单独样式 */
+.code_line{
+    display: flex;
 
+}
+.code_line .el-form-item__content{
+    display: flex;
+    width: 100%;
+    position: relative;
+}
+.code_line .el-input{
+    width: 70% !important;
+}
+.code_line  .el-button{
+    position: absolute;
+    right: 0;
+    color: #BC1B29;
+    border: none;
+    /* font-size: 1px; */
+    width: 25%;
+    height: 60px;
+}
+/* 嘉宾表单独样式 */
+.guest-body .code_line  .el-button{
+    background-color: #BC1B29;
+    color: #FFF;
+}
 .guest-body{
     position: relative;
 }
@@ -543,8 +571,9 @@ body {
 .guest-form-top {
     width: 100%;
     height: 78px;
-    background: linear-gradient(180deg, #EB3141 0%, rgba(249, 85, 99, 0.27) 100%);
-    box-shadow: 0px 4px 10px 0px rgba(188, 27, 41, 0.3);
+    background-color: #BC1B29;
+    /* background: linear-gradient(180deg, #EB3141 0%, rgba(249, 85, 99, 0.27) 100%);
+    box-shadow: 0px 4px 10px 0px rgba(188, 27, 41, 0.3); */
     border-radius: 12px 12px 0px 0px;
     margin-top: 40px;
     display: flex;
@@ -582,11 +611,19 @@ body {
     font-style: normal;
     text-transform: none;
 }
+.text3{
+    font-weight: 400;
+    font-size: 20px;
+    color: #BC1B29;
+    line-height: 40px;
+    margin-bottom: 10px;
+}
 
 .guest-buttons .el-button--primary {
     background: linear-gradient(180deg, #EB3141 0%, rgba(249, 85, 99, 0.27) 100%);
     box-shadow: 0px 4px 10px 0px rgba(188, 27, 41, 0.3);
-    border-radius: 12px 12px 0px 0px;
+    /* background-color: #BC1B29; */
+    border-radius: 12px 12px 0 0;
     width: 100%;
     border: none;
     height: 80px;
@@ -594,6 +631,15 @@ body {
 }
 
 @media screen and (max-width: 750px) {
+    /* 改变messageCenter */
+    .messageCenter{
+        top: 300px !important;
+    }
+    .code_line  .el-button{
+        font-size: 12px;
+        height: 40px;
+        padding: 0;
+    }
     .el-form-item__error {
         padding-top: 1px !important;
         font-size: 8px;
@@ -958,6 +1004,13 @@ body {
         font-style: normal;
         text-transform: none;
     }
+    .text3{
+        font-weight: 400;
+        font-size: 12px;
+        color: #BC1B29;
+        line-height: 20px;
+        margin-bottom: 10px;
+    }
 
     .guest-buttons .el-button--primary {
         height: 40px;
@@ -979,6 +1032,7 @@ body {
         height: 42px;
         margin-top: 4px;
     }
+   
 }
 @media screen and (max-width: 391px) {
     .form {
@@ -1052,6 +1106,11 @@ body {
     .el-input__inner{
         height: 32px !important;
     }
+    .code_line  .el-button{
+        font-size: 12px;
+        height: 30px;
+        margin-top: 6px;
+    }
     .buttons .el-button--primary{
         height: 36px;
         margin-top: 10px;
@@ -1078,3 +1137,14 @@ body {
         margin-right: 2px;
     }
 }
+
+
+/* 按钮禁用颜色 */
+/* .el-button--primary.is-disabled, .el-button--primary.is-disabled:active, .el-button--primary.is-disabled:focus, .el-button--primary.is-disabled:hover{
+    background: linear-gradient(180deg, #d8d8d8 0%, #d8d8d8 100%);
+
+}
+.guest-buttons .el-button--primary.is-disabled{
+    background-color:#111111
+
+} */
