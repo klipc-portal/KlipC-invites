@@ -1147,6 +1147,13 @@ body {
 }
 
 @media screen and (max-width: 380px) {
+    .codeShowtips {
+        background: rgba(0, 0, 0, 0.8);
+        border-radius: 12px;
+        padding: 4px 8px;
+        font-size: 12px;
+        margin: 0 auto;
+    }
     .form {
         height: 400px;
     }
@@ -1169,6 +1176,13 @@ body {
 }
 
 @media screen and (max-width: 350px) {
+    .codeShowtips {
+        background: rgba(0, 0, 0, 0.8);
+        border-radius: 12px;
+        padding: 4px ;
+        font-size: 11px;
+        margin: 0 auto;
+    }
     .form {
         height: 380px;
     }
