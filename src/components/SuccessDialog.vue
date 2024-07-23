@@ -7,8 +7,9 @@
       <div class="diatips1">报名成功！</div>
       <div class="diatips2">您登记的手机号码是{{parentPhone}}</div>
       <div class="diatips3">
-        活动举办
-        <span class="color-bc">前3天将以短信通知</span>，短信经常被拦截，建议添加上KlipC客服微信，可一对一交流并有交流群可加。
+        具体时间地点
+       
+        <span class="color-bc">将提前3天短信告知</span>，为避免信息被拦截，可添加KlipC官方客服微信
       </div>
     </div>
     <div class="dialogsw" v-if="parentType=='1'">

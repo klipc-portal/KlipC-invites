@@ -262,7 +262,7 @@ export default {
             this.parenttype = 0;
             setTimeout(() => {
               this.application = false;
-            }, 3000);
+            }, 10000);
           } else if(res.data.status == 10400){
            
                 this.msg = res.data.msg;
@@ -270,7 +270,7 @@ export default {
             this.parenttype = 1;
             setTimeout(() => {
               this.application = false;
-            }, 2000);
+            }, 3000);
           }else {
             this.codeShow = true;
                 this.codetips = res.data.msg;
