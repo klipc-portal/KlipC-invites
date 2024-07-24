@@ -175,8 +175,8 @@ export default {
         ]
       },
       // app_id: "53ae894c-dee7-468a-b79a-064957d0d131",//master
-      //app_id: "bf859622-d312-471f-a6e2-5a3b21094168", //dev
-      //app_secret: "e803ba2aca76615ea0ebc1983732052d", //dev
+      // app_id: "bf859622-d312-471f-a6e2-5a3b21094168", //dev
+      // app_secret: "e803ba2aca76615ea0ebc1983732052d", //dev
       app_id: "5b090c17-c221-4912-b850-d697b2ef89c4", //产品
       app_secret: "e803ba2aca76615ea0ebc1983732052d", //产品
       secret_tk: ""
@@ -237,8 +237,8 @@ export default {
         phone: this.form.phone,
         verification_code: this.form.code,
         city: this.form.city,
-        location: "中国"
-        // request_guest: false,
+        location: "中国",
+        request_guest: false,
         // guest_info: this.form.news
       };
       axios
