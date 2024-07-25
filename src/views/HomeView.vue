@@ -116,7 +116,7 @@
           </div>
         </div>
       </div>
-      <div class="bottom-text mt-50">https://klipc.me/</div>
+      <div class="bottom-text mt-50"> www.klipc.me</div>
       <div>
         <img class="bgimg" src="../assets/images/bg.png" />
       </div>
