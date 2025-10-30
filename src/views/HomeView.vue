@@ -71,12 +71,13 @@
             <el-form-item prop="city" style="--size:4em">
               <el-input v-if="language=='en'" v-model="form.city" placeholder="所在城市"></el-input>
               <el-cascader
-                v-if="language=='zh'"
-                size="large"
-                :options="options"
-                v-model="selectedOptions"
-                @change="handleChange"
-                placeholder="所在城市 *"
+              v-if="language=='zh'"
+              size="large"
+              :options="options"
+              v-model="selectedOptions"
+              @change="handleChange"
+              placeholder="所在城市 *"
+              :props="{ multiple: true}"
               ></el-cascader>
             </el-form-item>
 
@@ -156,7 +157,7 @@ export default {
         name: "",
         phone: "",
         code: "",
-        city: "",
+        cities: [],
         news: "观众报名表"
       },
       baseURL1: "https://dev.klipc.com.cn",
@@ -166,12 +167,9 @@ export default {
         name: [{ required: true, message: "请输入姓名", trigger: "blur" }],
         phone: [{ required: true, message: "请输入电话", trigger: "blur" }],
         code: [{ required: true, message: "请输入验证码", trigger: "blur" }],
-        city: [
-          {
-            required: true,
-            message: "请输入所在城市",
-            trigger: "blur"
-          }
+        cities: [
+          { type: 'array', required: true, message: '请选择所在城市', trigger: 'change' },
+          { type: 'array', max: 3, message: '最多选择 3 个城市', trigger: 'change' }
         ]
       },
       // app_id: "53ae894c-dee7-468a-b79a-064957d0d131",//master
@@ -216,16 +214,20 @@ export default {
           console.log(error);
         });
     },
-    handleChange(selectValue) {
-      provinceAndCityData.forEach(item => {
-        if (item.value == selectValue[0]) {
-          item.children.forEach(item1 => {
-            if (item1.value == selectValue[1]) {
-              this.form.city = item.label + item1.label;
-            }
-          });
-        }
-      });
+    handleChange (val) {
+      // val 是二维数组
+      if (val.length > 3) {
+        this.$message.warning('最多可选 3 个城市')
+        // 截断到 3 个，组件会回显正确数量
+        this.selectedOptions = val.slice(0, 3)
+      }
+      // 再同步到 form.cities
+      this.form.cities = this.selectedOptions.map(arr => {
+        const [pCode, cCode] = arr
+        const pItem = provinceAndCityData.find(p => p.value === pCode)
+        const cItem = pItem.children.find(c => c.value === cCode)
+        return pItem.label + cItem.label
+      })
     },
     // 观众报名表
     submitF() {
@@ -236,7 +238,7 @@ export default {
         area_code: "0086",
         phone: this.form.phone,
         verification_code: this.form.code,
-        city: this.form.city,
+        cities: this.form.cities, 
         location: "中国",
         request_guest: false,
         // guest_info: this.form.news
