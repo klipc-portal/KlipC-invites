@@ -76,7 +76,7 @@
               :options="options"
               v-model="selectedOptions"
               @change="handleChange"
-              placeholder="所在城市 *"
+              placeholder="所在城市（可多选） *"
               :props="{ multiple: true}"
               ></el-cascader>
             </el-form-item>
